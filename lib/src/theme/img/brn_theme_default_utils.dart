@@ -6,29 +6,29 @@ import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 
 class BrnThemeImg {
-  BrnThemeImgUtils _defaultBrunoImg;
+  BrnThemeImgUtils? _defaultBrunoImg;
 
-  static BrnThemeImg _instance;
+  static BrnThemeImg? _instance;
 
-  BrnThemeImg._(BrnThemeImgUtils brunoImgUtils) {
+  BrnThemeImg._(BrnThemeImgUtils? brunoImgUtils) {
     this._defaultBrunoImg = brunoImgUtils ?? BrnDefaultThemeImgUtil();
   }
 
-  factory BrnThemeImg.register({BrnThemeImgUtils brunoImgUtils}) {
-    _instance = BrnThemeImg._(brunoImgUtils);
-    return _instance;
+  factory BrnThemeImg.register({BrnThemeImgUtils? brunoImgUtils}) {
+    var newIns = BrnThemeImg._(brunoImgUtils);
+    BrnThemeImg._instance = newIns;
+    return newIns;
   }
 
   static BrnThemeImg get instance {
     if (_instance == null) {
       BrnThemeImg.register();
     }
-    return _instance;
+    return _instance!;
   }
 
   Image get ARROW_REFRESH_UP =>
-      _defaultBrunoImg?.getARROW_REFRESH_UP() ??
-      BrunoTools.getAssetImage(BrnAsset.refreshArrowUp);
+      _defaultBrunoImg?.getARROW_REFRESH_UP() ?? BrunoTools.getAssetImage(BrnAsset.refreshArrowUp);
 
   Image get ARROW_REFRESH_DOWN =>
       _defaultBrunoImg?.getARROW_REFRESH_DOWN() ??

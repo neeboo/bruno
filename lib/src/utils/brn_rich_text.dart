@@ -5,31 +5,31 @@ import 'package:flutter/material.dart';
 /// 福文本填充生成器
 
 /// 超链接的点击回调
-typedef BrnRichTextLinkClick = void Function(String text, String link);
+typedef BrnRichTextLinkClick = void Function(String? text, String? link);
 
 ///用于链式去生成福文本样式的文案 如果是直接的标签可以用css
 class BrnRichTextGenerator {
   BrnRichTextGenerator() {
-    _spanList = List();
+    _spanList = List<InlineSpan>.from([]);
     _maxLine = 100;
   }
 
-  List<InlineSpan> _spanList;
-  int _maxLine;
-  TextOverflow _overflow;
+  late List<InlineSpan> _spanList;
+  late int _maxLine;
+  TextOverflow? _overflow;
 
   /// 添加超链接部分的文案
   /// text是显示的文案
   /// url是超链接的url
   /// fontsize是显示大小
   /// richTextLinkClick 是超链接点击的回调
-  BrnRichTextGenerator addTextWithLink(String text,
-      {String url,
-      TextStyle textStyle,
-      Color linkColor,
-      double fontSize,
-      FontWeight fontWeight,
-      BrnRichTextLinkClick richTextLinkClick}) {
+  BrnRichTextGenerator addTextWithLink(String? text,
+      {String? url,
+      TextStyle? textStyle,
+      Color? linkColor,
+      double? fontSize,
+      FontWeight? fontWeight,
+      BrnRichTextLinkClick? richTextLinkClick}) {
     _spanList.add(TextSpan(
         style: textStyle ??
             TextStyle(
@@ -52,7 +52,7 @@ class BrnRichTextGenerator {
   /// fontsize 是文案大小 默认是16
   /// color 是文案的颜色 默认是深黑色
   BrnRichTextGenerator addText(String text,
-      {TextStyle textStyle, double fontSize, Color color, FontWeight fontWeight}) {
+      {TextStyle? textStyle, double? fontSize, Color? color, FontWeight? fontWeight}) {
     _spanList.add(TextSpan(
         text: text ?? "",
         style: textStyle ??
@@ -65,7 +65,7 @@ class BrnRichTextGenerator {
   }
 
   /// 添加Icon
-  BrnRichTextGenerator addIcon(Widget icon, {PlaceholderAlignment alignment}) {
+  BrnRichTextGenerator addIcon(Widget icon, {PlaceholderAlignment? alignment}) {
     _spanList.add(
       WidgetSpan(
           child: icon != null
@@ -80,7 +80,7 @@ class BrnRichTextGenerator {
   }
 
   /// 设置最多文案显示几行 默认是100行
-  BrnRichTextGenerator setMaxLines(int maxLine) {
+  BrnRichTextGenerator setMaxLines(int? maxLine) {
     if (maxLine != null && maxLine > 0) {
       _maxLine = maxLine;
     }

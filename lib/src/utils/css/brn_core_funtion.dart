@@ -4,12 +4,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:xml/xml_events.dart' as xml;
 
-typedef BrnHyperLinkCallback = Function(String text, String url);
+typedef BrnHyperLinkCallback = Function(String text, String? url);
 
 //用于将标签转为 style
 class BrnConvert {
   //超链接的点击回调
-  BrnHyperLinkCallback _linkCallBack;
+  BrnHyperLinkCallback? _linkCallBack;
 
   //标签的集合
   Iterable<xml.XmlEvent> _eventList = [];
@@ -18,9 +18,9 @@ class BrnConvert {
   List<Tag> stack = [];
 
   //外部传入的默认文本样式
-  TextStyle _defaultStyle;
+  TextStyle? _defaultStyle;
 
-  BrnConvert(String cssContent, {Function linkCallBack, TextStyle defaultStyle}) {
+  BrnConvert(String cssContent, {BrnHyperLinkCallback? linkCallBack, TextStyle? defaultStyle}) {
     _eventList = xml.parseEvents(cssContent);
     _linkCallBack = linkCallBack ?? null;
     _defaultStyle = defaultStyle;
@@ -123,7 +123,7 @@ class BrnConvert {
     TapGestureRecognizer tapGestureRecognizer = TapGestureRecognizer();
     tapGestureRecognizer.onTap = () {
       if (_linkCallBack != null) {
-        _linkCallBack(text, tag.linkUrl);
+        _linkCallBack!(text, tag.linkUrl);
       }
     };
     return TextSpan(
@@ -132,8 +132,8 @@ class BrnConvert {
 }
 
 class Tag {
-  String name;
-  TextStyle style;
-  String linkUrl;
+  String? name;
+  TextStyle? style;
+  String? linkUrl;
   bool isLink = false;
 }

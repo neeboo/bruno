@@ -49,7 +49,7 @@ class EventBus {
   ///
   Stream<T> on<T>() {
     if (T == dynamic) {
-      return streamController.stream;
+      return streamController.stream as Stream<T>;
     } else {
       return streamController.stream.where((event) => event is T).cast<T>();
     }
@@ -67,17 +67,17 @@ class EventBus {
     _streamController.close();
   }
 
-  static EventBus _instance;
+  static EventBus? _instance;
 
   factory EventBus.init() {
     _instance = EventBus();
-    return _instance;
+    return _instance!;
   }
 
   static EventBus get instance {
     if (_instance == null) {
       EventBus.init();
     }
-    return _instance;
+    return _instance!;
   }
 }

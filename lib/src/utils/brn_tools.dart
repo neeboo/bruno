@@ -31,7 +31,7 @@ class BrunoTools {
   /// imgAssetPath: assets资源文件路径
   /// package 访问某个package里的资源，这里默认flutter_alliance_package
   /// scale: 与所用的png资源是icon_2x.png (scale=2.0)，icon_3x.png(scale=3.0)
-  static Image getAssetImage(String assetFilePath, {BoxFit fit, bool gaplessPlayback = false}) {
+  static Image getAssetImage(String assetFilePath, {BoxFit? fit, bool gaplessPlayback = false}) {
     if (!assetFilePath.startsWith("assets")) {
       assetFilePath = "assets/$assetFilePath";
     }
@@ -54,7 +54,7 @@ class BrunoTools {
     );
   }
 
-  static Image getAssetSizeImage(String assetFilePath, double w, double h, {Color color}) {
+  static Image getAssetSizeImage(String assetFilePath, double w, double h, {Color? color}) {
     if (!assetFilePath.startsWith("assets")) {
       assetFilePath = "assets/$assetFilePath";
     }
