@@ -10,7 +10,6 @@ import 'package:bruno/src/utils/brn_tools.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-
 /// A single-line [ListTile] with a trailing button that expands or collapses
 /// the tile to reveal or hide the [children].
 ///
@@ -75,7 +74,6 @@ class BrnExpandableGroup extends StatefulWidget {
 
   /// The color to display behind the sublist when expanded.
   final Color backgroundColor;
-
 
   /// Specifies if the list tile is initially expanded (true) or collapsed (false, the default).
   final bool initiallyExpanded;
@@ -152,7 +150,7 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
   }
 
   Widget _buildHeader(BuildContext context, Widget child) {
-    final Color backgroundColor =  Colors.transparent;
+    final Color backgroundColor = Colors.transparent;
 
     return Container(
       color: backgroundColor,
@@ -228,8 +226,8 @@ class _BrnExpansionElementState extends State<BrnExpandableGroup>
 
     /// title 文字颜色
     _headerColorTween
-      ..begin = theme.textTheme.subhead.color
-      ..end = theme.textTheme.subhead.color;
+      ..begin = theme.textTheme.subtitle1.color
+      ..end = theme.textTheme.subtitle1.color;
 
     /// 展开收起图标颜色
     _iconColorTween

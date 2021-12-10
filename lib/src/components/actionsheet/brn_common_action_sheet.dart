@@ -4,8 +4,7 @@ import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_action_sheet_config.dart';
 import 'package:flutter/material.dart';
 
-typedef void BrnCommonActionSheetItemClickCallBack(
-    int index, BrnCommonActionSheetItem actionItem);
+typedef void BrnCommonActionSheetItemClickCallBack(int index, BrnCommonActionSheetItem actionItem);
 typedef bool BrnCommonActionSheetItemClickInterceptor(
     int index, BrnCommonActionSheetItem actionItem);
 
@@ -26,16 +25,16 @@ class BrnCommonActionSheetItem {
   String title;
 
   /// 辅助信息
-  String desc;
+  String? desc;
 
   /// 样式 [BrnActionSheetActionStyle]
   final BrnCommonActionSheetItemStyle actionStyle;
 
   /// 主标题文本样式
-  final TextStyle titleStyle;
+  final TextStyle? titleStyle;
 
   /// 辅助信息文本样式
-  final TextStyle descStyle;
+  final TextStyle? descStyle;
 
   BrnCommonActionSheetItem(
     this.title, {
@@ -55,38 +54,38 @@ class BrnCommonActionSheet extends StatelessWidget {
   final List<BrnCommonActionSheetItem> actions;
 
   /// ActionSheet 标题
-  final String title;
+  String? title;
 
   /// title区域widget, 与 title 字段互斥，当 titleWidget 不为 null 时优先使用 titleWidget。
-  final Widget titleWidget;
+  Widget? titleWidget;
 
   /// Action 之间分割线颜色，默认值 Color(0xfff0f0f0)
-  final Color separatorLineColor;
+  Color? separatorLineColor;
 
   /// 取消按钮与 Action 之间的分割线的颜色，默认值 Color(0xfff8f8f8)
-  final Color spaceColor;
+  Color? spaceColor;
 
   /// 取消按钮文本
-  final String cancelTitle;
+  String? cancelTitle;
 
   /// 标题最大行数，默认为2
-  final int maxTitleLines;
+  int? maxTitleLines;
 
   /// 列表最大高度限制，默认为屏幕高度减去上下安全距离
   /// 默认为0
-  final double maxSheetHeight;
+  final double? maxSheetHeight;
 
   /// Action Item 的点击事件
-  final BrnCommonActionSheetItemClickCallBack clickCallBack;
+  final BrnCommonActionSheetItemClickCallBack? clickCallBack;
 
   /// Action Item 点击事件拦截回调
-  final BrnCommonActionSheetItemClickInterceptor onItemClickInterceptor;
+  final BrnCommonActionSheetItemClickInterceptor? onItemClickInterceptor;
 
   /// 主题定制
-  BrnActionSheetConfig themeData;
+  BrnActionSheetConfig? themeData;
 
   BrnCommonActionSheet({
-    @required this.actions,
+    required this.actions,
     this.title,
     this.titleWidget,
     this.cancelTitle,
@@ -97,19 +96,18 @@ class BrnCommonActionSheet extends StatelessWidget {
     this.maxSheetHeight = 0,
     this.onItemClickInterceptor,
     this.themeData,
-  }) : assert(actions != null) {
+  }) {
     themeData ??= BrnActionSheetConfig();
     themeData = BrnThemeConfigurator.instance
-        .getConfig(configId: themeData.configId)
+        .getConfig(configId: themeData!.configId)
         .actionSheetConfig
-        .merge(themeData);
+        .merge(themeData!);
   }
 
   @override
   Widget build(BuildContext context) {
     EdgeInsets padding = MediaQueryData.fromWindow(window).padding;
-    double maxHeight =
-        MediaQuery.of(context).size.height - padding.top - padding.bottom;
+    double maxHeight = MediaQuery.of(context).size.height - padding.top - padding.bottom;
 
     double _maxSheetHeight = 0;
 
@@ -127,8 +125,7 @@ class BrnCommonActionSheet extends StatelessWidget {
               ),
             ),
           ),
-          child:
-              SafeArea(child: _configActionWidgets(context, _maxSheetHeight))),
+          child: SafeArea(child: _configActionWidgets(context, _maxSheetHeight))),
       onVerticalDragUpdate: (v) => {},
     );
   }
@@ -201,8 +198,7 @@ class BrnCommonActionSheet extends StatelessWidget {
             child: _configTile(actions[index]),
           ),
           onTap: () {
-            if (onItemClickInterceptor == null ||
-                !onItemClickInterceptor(index, actions[index])) {
+            if (onItemClickInterceptor == null || !onItemClickInterceptor(index, actions[index])) {
               // 推荐使用回调方法处理点击事件!!!!!!!!!!
               if (clickCallBack != null) {
                 clickCallBack(index, actions[index]);
@@ -274,9 +270,7 @@ class BrnCommonActionSheet extends StatelessWidget {
       );
     }
     return Container(
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: tileElements),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: tileElements),
     );
   }
 
