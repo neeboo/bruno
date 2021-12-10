@@ -10,77 +10,94 @@ import 'package:bruno/src/theme/configs/brn_abnormal_state_config.dart';
 /// 当没有配置组件的特定属性时使用上一级特定配置
 ///
 class BrnAllThemeConfig {
-  BrnCommonConfig commonConfig;
-  BrnAppBarConfig appBarConfig;
-  BrnButtonConfig buttonConfig;
-  BrnDialogConfig dialogConfig;
-  BrnCardTitleConfig cardTitleConfig;
-  BrnAbnormalStateConfig abnormalStateConfig;
-  BrnTagConfig tagConfig;
-  BrnPairInfoTableConfig pairInfoTableConfig;
-  BrnPairRichInfoGridConfig pairRichInfoGridConfig;
-  BrnActionSheetConfig actionSheetConfig;
-  BrnPickerConfig pickerConfig;
-  BrnEnhanceNumberCardConfig enhanceNumberCardConfig;
-  BrnTabBarConfig tabBarConfig;
-  BrnFormItemConfig formItemConfig;
-  BrnSelectionConfig selectionConfig;
-  BrnGalleryDetailConfig galleryDetailConfig;
+  late final BrnCommonConfig commonConfig;
+  late final BrnAppBarConfig appBarConfig;
+  late final BrnButtonConfig buttonConfig;
+  late final BrnDialogConfig dialogConfig;
+  late final BrnCardTitleConfig cardTitleConfig;
+  late final BrnAbnormalStateConfig abnormalStateConfig;
+  late final BrnTagConfig tagConfig;
+  late final BrnPairInfoTableConfig pairInfoTableConfig;
+  late final BrnPairRichInfoGridConfig pairRichInfoGridConfig;
+  late final BrnActionSheetConfig actionSheetConfig;
+  late final BrnPickerConfig pickerConfig;
+  late final BrnEnhanceNumberCardConfig enhanceNumberCardConfig;
+  late final BrnTabBarConfig tabBarConfig;
+  late final BrnFormItemConfig formItemConfig;
+  late final BrnSelectionConfig selectionConfig;
+  late final BrnGalleryDetailConfig galleryDetailConfig;
 
   BrnAllThemeConfig(
-      {this.commonConfig,
-      this.appBarConfig,
-      this.buttonConfig,
-      this.dialogConfig,
-      this.formItemConfig,
-      this.cardTitleConfig,
-      this.abnormalStateConfig,
-      this.tagConfig,
-      this.pairInfoTableConfig,
-      this.pairRichInfoGridConfig,
-      this.actionSheetConfig,
-      this.pickerConfig,
-      this.enhanceNumberCardConfig,
-      this.tabBarConfig,
-      this.selectionConfig,
-      this.galleryDetailConfig,
-      String configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID});
+      {BrnCommonConfig? commonConfig,
+      BrnAppBarConfig? appBarConfig,
+      BrnButtonConfig? buttonConfig,
+      BrnDialogConfig? dialogConfig,
+      BrnCardTitleConfig? cardTitleConfig,
+      BrnAbnormalStateConfig? abnormalStateConfig,
+      BrnTagConfig? tagConfig,
+      BrnPairInfoTableConfig? pairInfoTableConfig,
+      BrnPairRichInfoGridConfig? pairRichInfoGridConfig,
+      BrnActionSheetConfig? actionSheetConfig,
+      BrnPickerConfig? pickerConfig,
+      BrnEnhanceNumberCardConfig? enhanceNumberCardConfig,
+      BrnTabBarConfig? tabBarConfig,
+      BrnFormItemConfig? formItemConfig,
+      BrnSelectionConfig? selectionConfig,
+      BrnGalleryDetailConfig? galleryDetailConfig,
+      String configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID}) {
+    this.commonConfig = commonConfig ?? BrnCommonConfig();
+    this.appBarConfig = appBarConfig ?? BrnAppBarConfig();
+    this.buttonConfig = buttonConfig ?? BrnButtonConfig();
+    this.dialogConfig = dialogConfig ?? BrnDialogConfig();
+    this.formItemConfig = formItemConfig ?? BrnFormItemConfig();
+    this.cardTitleConfig = cardTitleConfig ?? BrnCardTitleConfig();
+    this.abnormalStateConfig = abnormalStateConfig ?? BrnAbnormalStateConfig();
+    this.tagConfig = tagConfig ?? BrnTagConfig();
+    this.appBarConfig = appBarConfig ?? BrnAppBarConfig();
+    this.pairInfoTableConfig = pairInfoTableConfig ?? BrnPairInfoTableConfig();
+    this.pairRichInfoGridConfig = pairRichInfoGridConfig ?? BrnPairRichInfoGridConfig();
+    this.actionSheetConfig = actionSheetConfig ?? BrnActionSheetConfig();
+    this.pickerConfig = pickerConfig ?? BrnPickerConfig();
+    this.enhanceNumberCardConfig = enhanceNumberCardConfig ?? BrnEnhanceNumberCardConfig();
+    this.tabBarConfig = tabBarConfig ?? BrnTabBarConfig();
+    this.selectionConfig = selectionConfig ?? BrnSelectionConfig();
+    this.galleryDetailConfig = galleryDetailConfig ?? BrnGalleryDetailConfig();
+  }
 
   void initThemeConfig(String configId) {
+    this.commonConfig = BrnCommonConfig();
+    this.appBarConfig = BrnAppBarConfig();
+    this.buttonConfig = BrnButtonConfig();
+    this.dialogConfig = BrnDialogConfig();
+    this.formItemConfig = BrnFormItemConfig();
+    this.cardTitleConfig = BrnCardTitleConfig();
+    this.abnormalStateConfig = BrnAbnormalStateConfig();
+    this.tagConfig = BrnTagConfig();
+    this.appBarConfig = BrnAppBarConfig();
+    this.pairInfoTableConfig = BrnPairInfoTableConfig();
+    this.pairRichInfoGridConfig = BrnPairRichInfoGridConfig();
+    this.actionSheetConfig = BrnActionSheetConfig();
+    this.pickerConfig = BrnPickerConfig();
+    this.enhanceNumberCardConfig = BrnEnhanceNumberCardConfig();
+    this.tabBarConfig = BrnTabBarConfig();
+    this.selectionConfig = BrnSelectionConfig();
+    this.galleryDetailConfig = BrnGalleryDetailConfig();
 
-    this.commonConfig ??= BrnCommonConfig();
-    this.appBarConfig ??= BrnAppBarConfig();
-    this.buttonConfig ??= BrnButtonConfig();
-    this.dialogConfig ??= BrnDialogConfig();
-    this.formItemConfig ??= BrnFormItemConfig();
-    this.cardTitleConfig ??= BrnCardTitleConfig();
-    this.abnormalStateConfig ??= BrnAbnormalStateConfig();
-    this.tagConfig ??= BrnTagConfig();
-    this.appBarConfig ??= BrnAppBarConfig();
-    this.pairInfoTableConfig ??= BrnPairInfoTableConfig();
-    this.pairRichInfoGridConfig ??= BrnPairRichInfoGridConfig();
-    this.actionSheetConfig ??= BrnActionSheetConfig();
-    this.pickerConfig ??= BrnPickerConfig();
-    this.enhanceNumberCardConfig ??= BrnEnhanceNumberCardConfig();
-    this.tabBarConfig ??= BrnTabBarConfig();
-    this.selectionConfig ??= BrnSelectionConfig();
-    this.galleryDetailConfig ??= BrnGalleryDetailConfig();
-
-    commonConfig?.initThemeConfig(configId);
-    appBarConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    buttonConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    dialogConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    formItemConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    cardTitleConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    abnormalStateConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    tagConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    pairInfoTableConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    pairRichInfoGridConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    selectionConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    actionSheetConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    pickerConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    enhanceNumberCardConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    tabBarConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
-    galleryDetailConfig?.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
+    commonConfig.initThemeConfig(configId);
+    appBarConfig.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
+    buttonConfig.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
+    dialogConfig.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
+    formItemConfig.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
+    cardTitleConfig.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
+    abnormalStateConfig.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
+    tagConfig.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
+    pairInfoTableConfig.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
+    pairRichInfoGridConfig.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
+    selectionConfig.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
+    actionSheetConfig.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
+    pickerConfig.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
+    enhanceNumberCardConfig.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
+    tabBarConfig.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
+    galleryDetailConfig.initThemeConfig(configId, currentLevelCommonConfig: commonConfig);
   }
 }

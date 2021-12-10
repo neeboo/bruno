@@ -24,50 +24,50 @@ class BrnActionSheetConfig extends BrnBaseConfig {
 
   /// ActionSheet 的顶部圆角
   /// default value is [BrnCommonConfig.radiusLg]
-  double topRadius;
+  double? topRadius;
 
   /// 标题样式
   /// default value is TextStyle(color:[BrnCommonConfig.colorTextSecondary],fontSize:[BrnCommonConfig.fontSizeBase])
-  BrnTextStyle titleStyle;
+  BrnTextStyle? titleStyle;
 
   /// 元素标题默认样式
   /// default value is TextStyle(color:[BrnCommonConfig.colorTextBase],fontSize:[BrnCommonConfig.fontSizeSubHead])
-  BrnTextStyle itemTitleStyle;
+  BrnTextStyle? itemTitleStyle;
 
   /// 元素标题链接样式
   /// default value is TextStyle(color:[BrnCommonConfig.colorLink],fontSize:[BrnCommonConfig.fontSizeSubHead],fontWeight: FontWeight.w600)
-  BrnTextStyle itemTitleStyleLink;
+  BrnTextStyle? itemTitleStyleLink;
 
   /// 元素警示项标题样式
   /// default value is TextStyle(color:[BrnCommonConfig.brandError],fontSize:[BrnCommonConfig.fontSizeBase],fontWeight: FontWeight.w600)
-  BrnTextStyle itemTitleStyleAlert;
+  BrnTextStyle? itemTitleStyleAlert;
 
   /// 元素描述默认样式
   /// default value is TextStyle(color:[BrnCommonConfig.colorTextBase],fontSize:[BrnCommonConfig.fontSizeCaption],fontWeight: FontWeight.w600)
-  BrnTextStyle itemDescStyle;
+  BrnTextStyle? itemDescStyle;
 
   /// 元素标题描述链接样式
   /// default value is TextStyle(color:[BrnCommonConfig.colorLink],fontSize:[BrnCommonConfig.fontSizeCaption],fontWeight: FontWeight.w600)
-  BrnTextStyle itemDescStyleLink;
+  BrnTextStyle? itemDescStyleLink;
 
   /// 元素警示项标题描述样式
   /// default value is TextStyle(color:[BrnCommonConfig.brandError],fontSize:[BrnCommonConfig.fontSizeCaption],fontWeight: FontWeight.w600)
-  BrnTextStyle itemDescStyleAlert;
+  BrnTextStyle? itemDescStyleAlert;
 
   /// 取消按钮样式
   /// default value is TextStyle(color:[BrnCommonConfig.colorTextBase],fontSize:[BrnCommonConfig.fontSizeSubHead],fontWeight: FontWeight.w600)
-  BrnTextStyle cancelStyle;
+  BrnTextStyle? cancelStyle;
 
   /// 内容左右间距
   /// default value is EdgeInsets.only(top: 12, bottom: 12, left: 60, right: 60)
-  EdgeInsets contentPadding;
+  EdgeInsets? contentPadding;
 
   /// title 左右间距
   ///default value is EdgeInsets.only(top: 16, bottom: 16, left: 60, right: 60)
-  EdgeInsets titlePadding;
+  EdgeInsets? titlePadding;
 
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
+  void initThemeConfig(String configId, {BrnCommonConfig? currentLevelCommonConfig}) {
     super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局组件配置
@@ -78,35 +78,35 @@ class BrnActionSheetConfig extends BrnBaseConfig {
 
     this.contentPadding ??= actionSheetConfig.contentPadding;
 
-    this.titleStyle = actionSheetConfig.titleStyle.merge(
+    this.titleStyle = actionSheetConfig.titleStyle?.merge(
         BrnTextStyle(color: commonConfig.colorTextSecondary, fontSize: commonConfig.fontSizeBase)
             .merge(this.titleStyle));
 
-    this.itemTitleStyle = actionSheetConfig.itemTitleStyle.merge(
+    this.itemTitleStyle = actionSheetConfig.itemTitleStyle?.merge(
         BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeSubHead)
             .merge(this.itemTitleStyle));
 
-    this.itemTitleStyleLink = actionSheetConfig.itemTitleStyleLink.merge(
+    this.itemTitleStyleLink = actionSheetConfig.itemTitleStyleLink?.merge(
         BrnTextStyle(color: commonConfig.colorLink, fontSize: commonConfig.fontSizeSubHead)
             .merge(this.itemTitleStyleLink));
 
-    this.itemTitleStyleAlert = actionSheetConfig.itemTitleStyleAlert.merge(
+    this.itemTitleStyleAlert = actionSheetConfig.itemTitleStyleAlert?.merge(
         BrnTextStyle(color: commonConfig.brandError, fontSize: commonConfig.fontSizeBase)
             .merge(this.itemTitleStyleAlert));
 
-    this.itemDescStyle = actionSheetConfig.itemDescStyle.merge(
+    this.itemDescStyle = actionSheetConfig.itemDescStyle?.merge(
         BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeCaption)
             .merge(this.itemDescStyle));
 
-    this.itemDescStyleLink = actionSheetConfig.itemDescStyleLink.merge(
+    this.itemDescStyleLink = actionSheetConfig.itemDescStyleLink?.merge(
         BrnTextStyle(color: commonConfig.colorLink, fontSize: commonConfig.fontSizeCaption)
             .merge(this.itemDescStyleLink));
 
-    this.itemDescStyleAlert = actionSheetConfig.itemDescStyleAlert.merge(
+    this.itemDescStyleAlert = actionSheetConfig.itemDescStyleAlert?.merge(
         BrnTextStyle(color: commonConfig.brandError, fontSize: commonConfig.fontSizeCaption)
             .merge(this.itemDescStyleAlert));
 
-    this.cancelStyle = actionSheetConfig.cancelStyle.merge(
+    this.cancelStyle = actionSheetConfig.cancelStyle?.merge(
         BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeSubHead)
             .merge(this.cancelStyle));
 
@@ -115,33 +115,33 @@ class BrnActionSheetConfig extends BrnBaseConfig {
 
   BrnActionSheetConfig copyWith({
     /// ActionSheet 的顶部圆角
-    double topRadius,
+    double? topRadius,
 
     /// 标题样式
-    BrnTextStyle titleStyle,
+    BrnTextStyle? titleStyle,
 
     /// 元素标题默认样式
-    BrnTextStyle itemTitleStyle,
+    BrnTextStyle? itemTitleStyle,
 
     /// 元素标题链接样式
-    BrnTextStyle itemTitleStyleLink,
+    BrnTextStyle? itemTitleStyleLink,
 
     /// 元素警示项标题样式
-    BrnTextStyle itemTitleStyleAlert,
+    BrnTextStyle? itemTitleStyleAlert,
 
     /// 元素描述默认样式
-    BrnTextStyle itemDescStyle,
+    BrnTextStyle? itemDescStyle,
 
     /// 元素标题描述链接样式
-    BrnTextStyle itemDescStyleLink,
+    BrnTextStyle? itemDescStyleLink,
 
     /// 元素警示项标题描述样式
-    BrnTextStyle itemDescStyleAlert,
+    BrnTextStyle? itemDescStyleAlert,
 
     /// 取消按钮样式
-    BrnTextStyle cancelStyle,
-    EdgeInsets contentPadding,
-    EdgeInsets titlePadding,
+    BrnTextStyle? cancelStyle,
+    EdgeInsets? contentPadding,
+    EdgeInsets? titlePadding,
   }) {
     return BrnActionSheetConfig(
         titleStyle: titleStyle ?? this.titleStyle,
@@ -157,7 +157,7 @@ class BrnActionSheetConfig extends BrnBaseConfig {
         titlePadding: titlePadding ?? this.titlePadding);
   }
 
-  BrnActionSheetConfig merge(BrnActionSheetConfig other) {
+  BrnActionSheetConfig merge(BrnActionSheetConfig? other) {
     if (other == null) return this;
     return copyWith(
       titleStyle: this.titleStyle?.merge(other.titleStyle) ?? other.titleStyle,
