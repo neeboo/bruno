@@ -7,89 +7,119 @@ import 'package:flutter/material.dart';
 class BrnTabBarConfig extends BrnBaseConfig {
   ///遵循外部主题配置，Bruno默认配置[BrnDefaultConfigUtils.defaultNumberInfoConfig]
   BrnTabBarConfig({
-    this.tabHeight,
-    this.indicatorHeight,
-    this.indicatorWidth,
-    this.labelStyle,
-    this.unselectedLabelStyle,
-    this.backgroundColor,
-    this.tagNormalTextStyle,
-    this.tagNormalBgColor,
-    this.tagSelectedTextStyle,
-    this.tagSelectedBgColor,
-    this.tagRadius,
-    this.tagSpacing,
-    this.preLineTagCount,
-    this.tagHeight,
+    double? tabHeight,
+    double? indicatorHeight,
+    double? indicatorWidth,
+    BrnTextStyle? labelStyle,
+    BrnTextStyle? unselectedLabelStyle,
+    Color? backgroundColor,
+    BrnTextStyle? tagNormalTextStyle,
+    Color? tagNormalBgColor,
+    BrnTextStyle? tagSelectedTextStyle,
+    Color? tagSelectedBgColor,
+    double? tagRadius,
+    double? tagSpacing,
+    int? preLineTagCount,
+    double? tagHeight,
     String configId: BrnThemeConfigurator.GLOBAL_CONFIG_ID,
-  }) : super(configId: configId);
+  }) : super(configId: configId) {
+    this.tabHeight = tabHeight ?? 50;
+    this.indicatorHeight = indicatorHeight ?? 2;
+    this.indicatorWidth = indicatorWidth ?? 24;
+    this.labelStyle = labelStyle ??
+        BrnTextStyle(
+            color: BrnDefaultConfigUtils.defaultCommonConfig.brandPrimary,
+            fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeSubHead,
+            fontWeight: FontWeight.w600);
+    this.unselectedLabelStyle = unselectedLabelStyle ??
+        BrnTextStyle(
+            color: BrnDefaultConfigUtils.defaultCommonConfig.colorTextBase,
+            fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeSubHead,
+            fontWeight: FontWeight.normal);
+    this.tagRadius = tagRadius ?? BrnDefaultConfigUtils.defaultCommonConfig.radiusSm;
+    this.tagNormalTextStyle = tagNormalTextStyle ??
+        BrnTextStyle(
+            color: BrnDefaultConfigUtils.defaultCommonConfig.colorTextBase,
+            fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeCaption);
+    this.tagNormalBgColor =
+        tagNormalBgColor ?? BrnDefaultConfigUtils.defaultCommonConfig.brandPrimary.withAlpha(0x14);
+    this.tagSelectedTextStyle = tagSelectedTextStyle ??
+        BrnTextStyle(
+            color: BrnDefaultConfigUtils.defaultCommonConfig.brandPrimary,
+            fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeCaption);
+    this.tagSelectedBgColor =
+        tagSelectedBgColor ?? BrnDefaultConfigUtils.defaultCommonConfig.fillBody;
+    this.tagSpacing = tagSpacing ?? 12;
+    this.preLineTagCount = preLineTagCount ?? 4;
+    this.tagHeight = tagHeight ?? 32;
+  }
 
   /// Tabbar的整体高度
   /// default value is 50
-  double tabHeight;
+  late double tabHeight;
 
   /// 指示器的高度
   /// default value is 2
-  double indicatorHeight;
+  late double indicatorHeight;
 
   /// 指示器的宽度
   /// default value is 24
-  double indicatorWidth;
+  late double indicatorWidth;
 
   /// 选中Tab文本的样式
   /// default value is TextStyle(color:[BrnCommonConfig.brandPrimary],fontSize:[BrnCommonConfig.fontSizeSubHead])
-  BrnTextStyle labelStyle;
+  late BrnTextStyle labelStyle;
 
   /// 未选中Tab文本的样式
   /// default value is TextStyle(color:[BrnCommonConfig.colorTextBase],fontSize:[BrnCommonConfig.fontSizeSubHead])
-  BrnTextStyle unselectedLabelStyle;
+  late BrnTextStyle unselectedLabelStyle;
 
   /// 背景色
   /// default value is [BrnCommonConfig.fillBase]
-  Color backgroundColor;
+  late Color backgroundColor;
 
   /// 标签字体样式
   /// default value is BrnTextStyle(color: [BrnCommonConfig.colorTextBase], fontSize: [BrnCommonConfig.fontSizeCaption])
-  BrnTextStyle tagNormalTextStyle;
+  late BrnTextStyle tagNormalTextStyle;
 
   /// 标签背景色
   /// default value is [BrnCommonConfig.brandPrimary].withAlpha(0x14),
-  Color tagNormalBgColor;
+  late Color tagNormalBgColor;
 
   /// 标签字体样式
   /// default value is BrnTextStyle(color:[BrnCommonConfig.brandPrimary], fontSize: [BrnCommonConfig.fontSizeCaption])
-  BrnTextStyle tagSelectedTextStyle;
+  late BrnTextStyle tagSelectedTextStyle;
 
   /// 标签选中背景色
   /// default value is [BrnCommonConfig.fillBody]
-  Color tagSelectedBgColor;
+  late Color tagSelectedBgColor;
 
   /// tag圆角
   /// default value is [BrnCommonConfig.radiusSm]
-  double tagRadius;
+  late double tagRadius;
 
   /// tag间距
   /// default value is 12
-  double tagSpacing;
+  late double tagSpacing;
 
   /// 每行的tag数
   /// default value is 4
-  int preLineTagCount;
+  late int preLineTagCount;
 
   /// tag高度
   /// default value is 32
-  double tagHeight;
+  late double tagHeight;
 
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
+  void initThemeConfig(String configId, {BrnCommonConfig? currentLevelCommonConfig}) {
     super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
 
     BrnTabBarConfig tabBarConfig =
         BrnThemeConfigurator.instance.getConfig(configId: configId).tabBarConfig;
 
-    this.tabHeight ??= tabBarConfig.tabHeight;
-    this.indicatorHeight ??= tabBarConfig.indicatorHeight;
-    this.indicatorWidth ??= tabBarConfig.indicatorWidth;
+    this.tabHeight = tabBarConfig.tabHeight;
+    this.indicatorHeight = tabBarConfig.indicatorHeight;
+    this.indicatorWidth = tabBarConfig.indicatorWidth;
 
     this.labelStyle = tabBarConfig.labelStyle.merge(
         BrnTextStyle(color: commonConfig.brandPrimary, fontSize: commonConfig.fontSizeSubHead)
@@ -99,7 +129,7 @@ class BrnTabBarConfig extends BrnBaseConfig {
         BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeSubHead)
             .merge(this.unselectedLabelStyle));
 
-    this.backgroundColor ??= tabBarConfig.backgroundColor;
+    this.backgroundColor = tabBarConfig.backgroundColor;
 
     this.tagNormalTextStyle = tabBarConfig.tagNormalTextStyle.merge(
         BrnTextStyle(color: commonConfig.colorTextBase, fontSize: commonConfig.fontSizeCaption)
@@ -109,29 +139,29 @@ class BrnTabBarConfig extends BrnBaseConfig {
         BrnTextStyle(color: commonConfig.brandPrimary, fontSize: commonConfig.fontSizeCaption)
             .merge(this.tagSelectedTextStyle));
 
-    this.tagNormalBgColor ??= tabBarConfig.tagNormalBgColor;
-    this.tagSelectedBgColor ??= tabBarConfig.tagSelectedBgColor;
-    this.tagRadius ??= commonConfig.radiusSm;
-    this.tagSpacing ??= tabBarConfig.tagSpacing;
-    this.preLineTagCount ??= tabBarConfig.preLineTagCount;
-    this.tagHeight ??= tabBarConfig.tagHeight;
+    this.tagNormalBgColor = tabBarConfig.tagNormalBgColor;
+    this.tagSelectedBgColor = tabBarConfig.tagSelectedBgColor;
+    this.tagRadius = commonConfig.radiusSm;
+    this.tagSpacing = tabBarConfig.tagSpacing;
+    this.preLineTagCount = tabBarConfig.preLineTagCount;
+    this.tagHeight = tabBarConfig.tagHeight;
   }
 
   BrnTabBarConfig copyWith({
-    double tabHeight,
-    double indicatorHeight,
-    double indicatorWidth,
-    BrnTextStyle labelStyle,
-    BrnTextStyle unselectedLabelStyle,
-    Color backgroundColor,
-    BrnTextStyle tagNormalTextStyle,
-    Color tagNormalColor,
-    BrnTextStyle tagSelectedTextStyle,
-    Color tagSelectedColor,
-    double tagRadius,
-    double tagSpacing,
-    int preLineTagSize,
-    double tagHeight,
+    double? tabHeight,
+    double? indicatorHeight,
+    double? indicatorWidth,
+    BrnTextStyle? labelStyle,
+    BrnTextStyle? unselectedLabelStyle,
+    Color? backgroundColor,
+    BrnTextStyle? tagNormalTextStyle,
+    Color? tagNormalColor,
+    BrnTextStyle? tagSelectedTextStyle,
+    Color? tagSelectedColor,
+    double? tagRadius,
+    double? tagSpacing,
+    int? preLineTagSize,
+    double? tagHeight,
   }) {
     return BrnTabBarConfig(
       tabHeight: tabHeight ?? this.tabHeight,
@@ -157,15 +187,15 @@ class BrnTabBarConfig extends BrnBaseConfig {
       tabHeight: other.tabHeight,
       indicatorHeight: other.indicatorHeight,
       indicatorWidth: other.indicatorWidth,
-      labelStyle: this.labelStyle?.merge(other.labelStyle) ?? other.labelStyle,
-      unselectedLabelStyle: this.unselectedLabelStyle?.merge(other.unselectedLabelStyle) ??
-          other.unselectedLabelStyle,
+      labelStyle: this.labelStyle.merge(other.labelStyle) ?? other.labelStyle,
+      unselectedLabelStyle:
+          this.unselectedLabelStyle.merge(other.unselectedLabelStyle) ?? other.unselectedLabelStyle,
       backgroundColor: other.backgroundColor,
       tagNormalTextStyle:
-          this.tagNormalTextStyle?.merge(other.tagNormalTextStyle) ?? other.tagNormalTextStyle,
+          this.tagNormalTextStyle.merge(other.tagNormalTextStyle) ?? other.tagNormalTextStyle,
       tagNormalColor: other.tagNormalBgColor,
-      tagSelectedTextStyle: this.tagSelectedTextStyle?.merge(other.tagSelectedTextStyle) ??
-          other.tagSelectedTextStyle,
+      tagSelectedTextStyle:
+          this.tagSelectedTextStyle.merge(other.tagSelectedTextStyle) ?? other.tagSelectedTextStyle,
       tagSelectedColor: other.tagSelectedBgColor,
       tagRadius: other.tagRadius,
       tagSpacing: other.tagSpacing,
