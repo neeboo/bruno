@@ -59,21 +59,21 @@ class BrnCommonActionSheet extends StatelessWidget {
   /// title区域widget, 与 title 字段互斥，当 titleWidget 不为 null 时优先使用 titleWidget。
   Widget? titleWidget;
 
-  /// Action 之间分割线颜色，默认值 Color(0xfff0f0f0)
-  Color? separatorLineColor;
-
-  /// 取消按钮与 Action 之间的分割线的颜色，默认值 Color(0xfff8f8f8)
-  Color? spaceColor;
-
   /// 取消按钮文本
   String? cancelTitle;
 
+  /// Action 之间分割线颜色，默认值 Color(0xfff0f0f0)
+  Color separatorLineColor;
+
+  /// 取消按钮与 Action 之间的分割线的颜色，默认值 Color(0xfff8f8f8)
+  Color spaceColor;
+
   /// 标题最大行数，默认为2
-  int? maxTitleLines;
+  int maxTitleLines;
 
   /// 列表最大高度限制，默认为屏幕高度减去上下安全距离
   /// 默认为0
-  final double? maxSheetHeight;
+  double maxSheetHeight;
 
   /// Action Item 的点击事件
   final BrnCommonActionSheetItemClickCallBack? clickCallBack;
@@ -87,13 +87,13 @@ class BrnCommonActionSheet extends StatelessWidget {
   BrnCommonActionSheet({
     required this.actions,
     this.title,
+    this.spaceColor = const Color(0xfff8f8f8),
+    this.separatorLineColor = const Color(0xfff0f0f0),
+    this.maxTitleLines = 2,
+    this.maxSheetHeight = 0,
     this.titleWidget,
     this.cancelTitle,
     this.clickCallBack,
-    this.separatorLineColor,
-    this.spaceColor = const Color(0xfff8f8f8),
-    this.maxTitleLines = 2,
-    this.maxSheetHeight = 0,
     this.onItemClickInterceptor,
     this.themeData,
   }) {

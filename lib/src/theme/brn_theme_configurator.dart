@@ -15,9 +15,7 @@ class BrnThemeConfigurator {
   }
 
   /// 手动注册时，默认注册渠道是 GLOBAL_CONFIG_ID
-  void register(BrnAllThemeConfig allThemeConfig, {String configId = GLOBAL_CONFIG_ID}) {
-    assert(configId != null);
-
+  void register(BrnAllThemeConfig? allThemeConfig, {String configId = GLOBAL_CONFIG_ID}) {
     /// 先赋值默认配置
     checkAndInitBrunoConfig();
 
@@ -35,17 +33,16 @@ class BrnThemeConfigurator {
   /// 2、若获取的为 null，则使用默认的全局配置。
   /// 3、若没有配置 GLOBAL_CONFIG_ID ，则使用 BRUNO 的配置。
   BrnAllThemeConfig getConfig({String configId = GLOBAL_CONFIG_ID}) {
-    assert(configId != null);
     checkAndInitBrunoConfig();
 
-    BrnAllThemeConfig allThemeConfig = globalConfig[configId];
+    var allThemeConfig = globalConfig[configId];
     if (allThemeConfig == null) {
       allThemeConfig = globalConfig[GLOBAL_CONFIG_ID];
     }
     if (allThemeConfig == null) {
       allThemeConfig = globalConfig[BRUNO_CONFIG_ID];
     }
-    return allThemeConfig;
+    return allThemeConfig!;
   }
 
   /// 检查是否有默认配置
