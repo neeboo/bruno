@@ -1,4 +1,5 @@
 import 'package:bruno/src/theme/base/brn_base_config.dart';
+import 'package:bruno/src/theme/base/brn_default_config_utils.dart';
 import 'package:bruno/src/theme/base/brn_text_style.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_common_config.dart';
@@ -9,91 +10,155 @@ import 'package:flutter/material.dart';
 class BrnFormItemConfig extends BrnBaseConfig {
   /// 左侧标题文本样式
   /// default BrnTextStyle(color: [BrnCommonConfig.colorTextBase],fontSize: [BrnCommonConfig.fontSizeHead])
-  BrnTextStyle headTitleTextStyle;
+  late BrnTextStyle headTitleTextStyle;
 
   /// 左侧标题文本样式
   /// default BrnTextStyle(color: [BrnCommonConfig.colorTextBase],fontSize: [BrnCommonConfig.fontSizeSubHead])
-  BrnTextStyle titleTextStyle;
+  late BrnTextStyle titleTextStyle;
 
   /// 左侧辅助文本样式
   /// default BrnTextStyle(color: [BrnCommonConfig.colorTextSecondary], fontSize: [BrnCommonConfig.fontSizeCaption])
-  BrnTextStyle subTitleTextStyle;
+  late BrnTextStyle subTitleTextStyle;
 
   /// 左侧Error文本样式
   /// default BrnTextStyle(color: [BrnCommonConfig.brandError], fontSize: [BrnCommonConfig.fontSizeCaption])
-  BrnTextStyle errorTextStyle;
+  late BrnTextStyle errorTextStyle;
 
   /// 右侧 输入、选择提示文本样式
   /// default BrnTextStyle(color: [BrnCommonConfig.colorTextHint], fontSize: [BrnCommonConfig.fontSizeSubHead]）
-  BrnTextStyle hintTextStyle;
+  late BrnTextStyle hintTextStyle;
 
   /// 右侧 主要内容样式
   /// default BrnTextStyle([BrnCommonConfig.colorTextBase]), fontSize: [BrnCommonConfig.fontSizeSubHead])
-  BrnTextStyle contentTextStyle;
+  late BrnTextStyle contentTextStyle;
 
   /// 表单项 当有星号标识 上下右边距
   /// default EdgeInsets.only(left: 0, top: [BrnCommonConfig.vSpacingLg], right: [BrnCommonConfig.hSpacingLg], bottom: [BrnCommonConfig.vSpacingLg])
-  EdgeInsets formPadding;
+  late EdgeInsets formPadding;
 
   /// 表单项 当有星号标识 左边距
   /// default EdgeInsets.only(left: 10)
-  EdgeInsets titlePaddingSm;
+  late EdgeInsets titlePaddingSm;
 
   /// 表单项 当无星号标识 左右边距
   /// default EdgeInsets.only(left: [BrnCommonConfig.hSpacingLg])
-  EdgeInsets titlePaddingLg;
+  late EdgeInsets titlePaddingLg;
 
   /// 选项之间间距 单选 or 多选
   /// default EdgeInsets.only(left: [BrnCommonConfig.hSpacingMd])
-  EdgeInsets optionsMiddlePadding;
+  late EdgeInsets optionsMiddlePadding;
 
   /// 选项普通文本样式
   /// TextStyle(color: [BrnCommonConfig.colorTextBase], height: 1.3, fontSize: [BrnCommonConfig.fontSizeSubHead],)
-  BrnTextStyle optionTextStyle;
+  late BrnTextStyle optionTextStyle;
 
   /// 选项选中文本样式
   /// TextStyle(color: [BrnCommonConfig.brandPrimary], height: 1.3, fontSize: [BrnCommonConfig.fontSizeSubHead],)
-  BrnTextStyle optionSelectedTextStyle;
+  late BrnTextStyle optionSelectedTextStyle;
 
   /// 子标题 左上间距
   /// default EdgeInsets.only(left: [BrnCommonConfig.hSpacingLg], top: [BrnCommonConfig.vSpacingXs])
-  EdgeInsets subTitlePadding;
+  late EdgeInsets subTitlePadding;
 
   /// error提示 左上间距
   /// EdgeInsets.only(left: [BrnCommonConfig.hSpacingLg], top: [BrnCommonConfig.vSpacingXs])
-  EdgeInsets errorPadding;
+  late EdgeInsets errorPadding;
 
   /// 不可修改内容展示
   /// BrnTextStyle(color: [BrnCommonConfig.colorTextDisabled],fontSize: [BrnCommonConfig.fontSizeSubHead])
-  BrnTextStyle disableTextStyle;
+  late BrnTextStyle disableTextStyle;
 
   /// 提示文本样式
   /// BrnTextStyle(color: [BrnCommonConfig.colorTextSecondary], fontSize: [BrnCommonConfig.fontSizeBase])
-  BrnTextStyle tipsTextStyle;
+  late BrnTextStyle tipsTextStyle;
 
   BrnFormItemConfig.generatorFromConfigId(String configId) {
     initThemeConfig(configId);
   }
 
   BrnFormItemConfig(
-      {this.titleTextStyle,
-      this.subTitleTextStyle,
-      this.errorTextStyle,
-      this.hintTextStyle,
-      this.contentTextStyle,
-      this.formPadding,
-      this.titlePaddingSm,
-      this.titlePaddingLg,
-      this.optionsMiddlePadding,
-      this.subTitlePadding,
-      this.errorPadding,
-      this.disableTextStyle,
-      this.tipsTextStyle,
-      this.headTitleTextStyle,
-      this.optionTextStyle,
-      this.optionSelectedTextStyle,
+      {BrnTextStyle? headTitleTextStyle,
+      BrnTextStyle? titleTextStyle,
+      BrnTextStyle? subTitleTextStyle,
+      BrnTextStyle? errorTextStyle,
+      BrnTextStyle? hintTextStyle,
+      BrnTextStyle? contentTextStyle,
+      EdgeInsets? formPadding,
+      EdgeInsets? titlePaddingSm,
+      EdgeInsets? titlePaddingLg,
+      EdgeInsets? optionsMiddlePadding,
+      BrnTextStyle? optionTextStyle,
+      BrnTextStyle? optionSelectedTextStyle,
+      EdgeInsets? subTitlePadding,
+      EdgeInsets? errorPadding,
+      BrnTextStyle? disableTextStyle,
+      BrnTextStyle? tipsTextStyle,
       String configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID})
-      : super(configId: configId);
+      : super(configId: configId) {
+    this.headTitleTextStyle = headTitleTextStyle ??
+        BrnTextStyle(
+            color: BrnDefaultConfigUtils.defaultCommonConfig.colorTextBase,
+            fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeHead);
+    this.titleTextStyle = titleTextStyle ??
+        BrnTextStyle(
+            color: BrnDefaultConfigUtils.defaultCommonConfig.colorTextBase,
+            fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeSubHead);
+    this.subTitleTextStyle = subTitleTextStyle ??
+        BrnTextStyle(
+            color: BrnDefaultConfigUtils.defaultCommonConfig.colorTextSecondary,
+            fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeCaption);
+    this.errorTextStyle = errorTextStyle ??
+        BrnTextStyle(
+            color: BrnDefaultConfigUtils.defaultCommonConfig.brandError,
+            fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeCaption);
+    this.hintTextStyle = hintTextStyle ??
+        BrnTextStyle(
+          color: BrnDefaultConfigUtils.defaultCommonConfig.colorTextHint,
+          fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeSubHead,
+        );
+    this.contentTextStyle = contentTextStyle ??
+        BrnTextStyle(
+            color: BrnDefaultConfigUtils.defaultCommonConfig.colorTextBase,
+            fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeSubHead);
+    this.optionsMiddlePadding = optionsMiddlePadding ??
+        EdgeInsets.only(left: BrnDefaultConfigUtils.defaultCommonConfig.hSpacingMd);
+    this.optionTextStyle = optionTextStyle ??
+        BrnTextStyle(
+            height: 1.3,
+            color: BrnDefaultConfigUtils.defaultCommonConfig.colorTextBase,
+            fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeSubHead);
+    this.optionSelectedTextStyle = optionSelectedTextStyle ??
+        BrnTextStyle(
+            height: 1.3,
+            color: BrnDefaultConfigUtils.defaultCommonConfig.brandPrimary,
+            fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeSubHead);
+    this.formPadding = formPadding ??
+        EdgeInsets.only(
+            left: 0,
+            top: BrnDefaultConfigUtils.defaultCommonConfig.vSpacingLg,
+            right: BrnDefaultConfigUtils.defaultCommonConfig.hSpacingLg,
+            bottom: BrnDefaultConfigUtils.defaultCommonConfig.vSpacingLg);
+    this.titlePaddingSm = titlePaddingSm ?? EdgeInsets.only(left: 10);
+    this.titlePaddingLg = titlePaddingLg ??
+        EdgeInsets.only(left: BrnDefaultConfigUtils.defaultCommonConfig.hSpacingLg);
+    this.subTitlePadding = subTitlePadding ??
+        EdgeInsets.only(
+            left: BrnDefaultConfigUtils.defaultCommonConfig.hSpacingLg,
+            top: BrnDefaultConfigUtils.defaultCommonConfig.vSpacingXs);
+    this.errorPadding = errorPadding ??
+        EdgeInsets.only(
+            left: BrnDefaultConfigUtils.defaultCommonConfig.hSpacingLg,
+            top: BrnDefaultConfigUtils.defaultCommonConfig.vSpacingXs);
+    this.disableTextStyle = disableTextStyle ??
+        BrnTextStyle(
+          color: BrnDefaultConfigUtils.defaultCommonConfig.colorTextDisabled,
+          fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeSubHead,
+        );
+    this.tipsTextStyle = tipsTextStyle ??
+        BrnTextStyle(
+            color: BrnDefaultConfigUtils.defaultCommonConfig.colorTextSecondary,
+            fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeBase);
+  }
 
   /// 举例：
   /// ① 尝试获取最近的配置 [topRadius] 若配不为 null，直接使用该配置.
@@ -101,7 +166,7 @@ class BrnFormItemConfig extends BrnBaseConfig {
   /// ③ 如果全局配置中的配置同样为 null 则根据 [configId] 取出全局配置。
   /// ④ 如果没有配置 [configId] 的全局配置，则使用 Bruno 默认的配置
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
+  void initThemeConfig(String configId, {BrnCommonConfig? currentLevelCommonConfig}) {
     super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局form组件配置
@@ -179,26 +244,26 @@ class BrnFormItemConfig extends BrnBaseConfig {
         BrnTextStyle(color: commonConfig.brandError, fontSize: commonConfig.fontSizeCaption)
             .merge(this.errorTextStyle));
 
-    this.optionsMiddlePadding ??= formItemThemeData?.optionsMiddlePadding;
+    this.optionsMiddlePadding = formItemThemeData.optionsMiddlePadding;
   }
 
   BrnFormItemConfig copyWith({
-    BrnTextStyle titleTextStyle,
-    BrnTextStyle subTitleTextStyle,
-    BrnTextStyle errorTextStyle,
-    BrnTextStyle hintTextStyle,
-    BrnTextStyle contentTextStyle,
-    EdgeInsets formPadding,
-    EdgeInsets titlePaddingSm,
-    EdgeInsets titlePaddingLg,
-    EdgeInsets optionsMiddlePadding,
-    EdgeInsets subTitlePadding,
-    EdgeInsets errorPadding,
-    BrnTextStyle disableTextStyle,
-    BrnTextStyle tipsTextStyle,
-    BrnTextStyle headTitleTextStyle,
-    BrnTextStyle optionTextStyle,
-    BrnTextStyle optionSelectedTextStyle,
+    BrnTextStyle? titleTextStyle,
+    BrnTextStyle? subTitleTextStyle,
+    BrnTextStyle? errorTextStyle,
+    BrnTextStyle? hintTextStyle,
+    BrnTextStyle? contentTextStyle,
+    EdgeInsets? formPadding,
+    EdgeInsets? titlePaddingSm,
+    EdgeInsets? titlePaddingLg,
+    EdgeInsets? optionsMiddlePadding,
+    EdgeInsets? subTitlePadding,
+    EdgeInsets? errorPadding,
+    BrnTextStyle? disableTextStyle,
+    BrnTextStyle? tipsTextStyle,
+    BrnTextStyle? headTitleTextStyle,
+    BrnTextStyle? optionTextStyle,
+    BrnTextStyle? optionSelectedTextStyle,
   }) {
     return BrnFormItemConfig(
       titleTextStyle: titleTextStyle ?? this.titleTextStyle,
@@ -220,27 +285,27 @@ class BrnFormItemConfig extends BrnBaseConfig {
     );
   }
 
-  BrnFormItemConfig merge(BrnFormItemConfig other) {
+  BrnFormItemConfig merge(BrnFormItemConfig? other) {
     if (other == null) return this;
     return copyWith(
-        titleTextStyle: titleTextStyle?.merge(other.titleTextStyle) ?? other.titleTextStyle,
+        titleTextStyle: titleTextStyle.merge(other.titleTextStyle) ?? other.titleTextStyle,
         subTitleTextStyle:
-            subTitleTextStyle?.merge(other.subTitleTextStyle) ?? other.subTitleTextStyle,
-        errorTextStyle: errorTextStyle?.merge(other.errorTextStyle) ?? other.errorTextStyle,
-        hintTextStyle: hintTextStyle?.merge(other.hintTextStyle) ?? other.hintTextStyle,
-        contentTextStyle: contentTextStyle?.merge(other.contentTextStyle) ?? other.contentTextStyle,
+            subTitleTextStyle.merge(other.subTitleTextStyle) ?? other.subTitleTextStyle,
+        errorTextStyle: errorTextStyle.merge(other.errorTextStyle) ?? other.errorTextStyle,
+        hintTextStyle: hintTextStyle.merge(other.hintTextStyle) ?? other.hintTextStyle,
+        contentTextStyle: contentTextStyle.merge(other.contentTextStyle) ?? other.contentTextStyle,
         formPadding: other.formPadding,
         titlePaddingSm: other.titlePaddingSm,
         titlePaddingLg: other.titlePaddingLg,
         optionsMiddlePadding: other.optionsMiddlePadding,
         subTitlePadding: other.subTitlePadding,
         errorPadding: other.errorPadding,
-        disableTextStyle: disableTextStyle?.merge(other.disableTextStyle) ?? other.disableTextStyle,
-        tipsTextStyle: tipsTextStyle?.merge(other.tipsTextStyle) ?? other.tipsTextStyle,
+        disableTextStyle: disableTextStyle.merge(other.disableTextStyle) ?? other.disableTextStyle,
+        tipsTextStyle: tipsTextStyle.merge(other.tipsTextStyle) ?? other.tipsTextStyle,
         headTitleTextStyle:
-            headTitleTextStyle?.merge(other.headTitleTextStyle) ?? other.headTitleTextStyle,
-        optionTextStyle: optionTextStyle?.merge(other.optionTextStyle) ?? other.optionTextStyle,
-        optionSelectedTextStyle: optionSelectedTextStyle?.merge(other.optionSelectedTextStyle) ??
+            headTitleTextStyle.merge(other.headTitleTextStyle) ?? other.headTitleTextStyle,
+        optionTextStyle: optionTextStyle.merge(other.optionTextStyle) ?? other.optionTextStyle,
+        optionSelectedTextStyle: optionSelectedTextStyle.merge(other.optionSelectedTextStyle) ??
             other.optionSelectedTextStyle);
   }
 }

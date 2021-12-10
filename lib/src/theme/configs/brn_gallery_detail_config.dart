@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:bruno/src/components/navbar/brn_appbar_theme.dart';
 import 'package:bruno/src/theme/base/brn_base_config.dart';
+import 'package:bruno/src/theme/base/brn_default_config_utils.dart';
 import 'package:bruno/src/theme/base/brn_text_style.dart';
 import 'package:bruno/src/theme/brn_theme_configurator.dart';
 import 'package:bruno/src/theme/configs/brn_common_config.dart';
@@ -13,88 +14,126 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
 
   /// appbar 标题样式
   /// default value is TextStyle(color: [BrnCommonConfig.colorTextBaseInverse],fontSize: [BrnCommonConfig.fontSizeHead],fontWeight: FontWeight.w600)
-  BrnTextStyle appbarTitleStyle;
+  late BrnTextStyle appbarTitleStyle;
 
   /// 右侧操作区域文案样式
   /// default value is TextStyle(color: AppBarBrightness(brightness).textColor,fontSize: BrnAppBarTheme.actionFontSize,fontWeight: FontWeight.w600)
-  BrnTextStyle appbarActionStyle;
+  late BrnTextStyle appbarActionStyle;
 
   /// appBar 背景色
   /// default value is Colors.black
-  Color appbarBackgroundColor;
+  late Color appbarBackgroundColor;
 
   /// appbar brightness
   /// default value is [Brightness.dark]
-  Brightness appbarBrightness;
+  late Brightness appbarBrightness;
 
   /// tabBar 标题普通样式
   /// default value is TextStyle(fontSize: [BrnCommonConfig.fontSizeSubHead], color: Colors.red)
-  BrnTextStyle tabBarUnSelectedLabelStyle;
+  late BrnTextStyle tabBarUnSelectedLabelStyle;
 
   /// tabBar 标题选中样式
   /// default value is  TextStyle(fontSize: [BrnCommonConfig.fontSizeSubHead],fontWeight: FontWeight.w600,color: [BrnCommonConfig.colorTextBaseInverse])
-  BrnTextStyle tabBarLabelStyle;
+  late BrnTextStyle tabBarLabelStyle;
 
   /// tabBar 背景色
   /// default value is Colors.black
-  Color tabBarBackgroundColor;
+  late Color tabBarBackgroundColor;
 
   /// 页面 背景色
   /// default value is Colors.black
-  Color pageBackgroundColor;
+  late Color pageBackgroundColor;
 
   /// 底部内容区域的背景色
   /// default value is  Color(0X88000000)
-  Color bottomBackgroundColor;
+  late Color bottomBackgroundColor;
 
   /// 标题文案样式  TextStyle(color: [BrnCommonConfig.colorTextBaseInverse],fontSize: [BrnCommonConfig.fontSizeHead],fontWeight: FontWeight.w600)
   /// default value is
-  BrnTextStyle titleStyle;
+  late BrnTextStyle titleStyle;
 
   /// 内容文案样式
   /// default value is TextStyle(color: Color(0xFFCCCCCC), fontSize: [BrnCommonConfig.fontSizeBase])
-  BrnTextStyle contentStyle;
+  late BrnTextStyle contentStyle;
 
   /// 右侧展开收起样式
   /// default value is TextStyle(color: [BrnCommonConfig.colorTextBaseInverse],fontSize: [BrnCommonConfig.fontSizeBase],)
-  BrnTextStyle actionStyle;
+  late BrnTextStyle actionStyle;
 
   /// icon 颜色
   /// default value is Colors.white
-  Color iconColor;
+  late Color iconColor;
 
   BrnGalleryDetailConfig(
-      {this.appbarTitleStyle,
-      this.appbarActionStyle,
-      this.appbarBackgroundColor,
-      this.appbarBrightness,
-      this.tabBarUnSelectedLabelStyle,
-      this.tabBarLabelStyle,
-      this.tabBarBackgroundColor,
-      this.pageBackgroundColor,
-      this.bottomBackgroundColor,
-      this.titleStyle,
-      this.contentStyle,
-      this.actionStyle,
-      this.iconColor,
+      {BrnTextStyle? appbarTitleStyle,
+      BrnTextStyle? appbarActionStyle,
+      Color? appbarBackgroundColor,
+      Brightness? appbarBrightness,
+      BrnTextStyle? tabBarUnSelectedLabelStyle,
+      BrnTextStyle? tabBarLabelStyle,
+      Color? tabBarBackgroundColor,
+      Color? pageBackgroundColor,
+      Color? bottomBackgroundColor,
+      BrnTextStyle? titleStyle,
+      BrnTextStyle? contentStyle,
+      BrnTextStyle? actionStyle,
+      Color? iconColor,
       String configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID})
-      : super(configId: configId);
+      : super(configId: configId) {
+    this.appbarTitleStyle = appbarTitleStyle ??
+        BrnTextStyle(
+          color: BrnDefaultConfigUtils.defaultCommonConfig.colorTextBaseInverse,
+          fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeSubHead,
+          fontWeight: FontWeight.w600,
+        );
+    this.appbarActionStyle = appbarActionStyle ??
+        BrnTextStyle(
+            color: BrnAppBarTheme.lightTextColor,
+            fontSize: BrnAppBarTheme.actionFontSize,
+            fontWeight: FontWeight.w600);
+    this.appbarBackgroundColor = appbarBackgroundColor ?? Colors.black;
+    this.appbarBrightness = appbarBrightness ?? Brightness.dark;
+    this.tabBarUnSelectedLabelStyle =
+        tabBarUnSelectedLabelStyle ?? BrnTextStyle(fontSize: 16, color: Color(0XFFCCCCCC));
+    this.tabBarLabelStyle = tabBarLabelStyle ??
+        BrnTextStyle(
+            fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeSubHead,
+            fontWeight: FontWeight.w600,
+            color: BrnDefaultConfigUtils.defaultCommonConfig.colorTextBaseInverse);
+    this.tabBarBackgroundColor = tabBarBackgroundColor ?? Colors.black;
+    this.pageBackgroundColor = pageBackgroundColor ?? Colors.black;
+    this.bottomBackgroundColor = bottomBackgroundColor ?? Color(0X88000000);
+    this.titleStyle = titleStyle ??
+        BrnTextStyle(
+            color: BrnDefaultConfigUtils.defaultCommonConfig.colorTextBaseInverse,
+            fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeHead,
+            fontWeight: FontWeight.w600);
+    this.contentStyle = contentStyle ??
+        BrnTextStyle(
+            color: Color(0xFFCCCCCC),
+            fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeBase);
+    this.actionStyle = actionStyle ??
+        BrnTextStyle(
+            color: BrnDefaultConfigUtils.defaultCommonConfig.colorTextBaseInverse,
+            fontSize: BrnDefaultConfigUtils.defaultCommonConfig.fontSizeBase);
+    this.iconColor = iconColor ?? Colors.white;
+  }
 
   /// 黑色主题
   BrnGalleryDetailConfig.dark(
-      {this.appbarTitleStyle,
-      this.appbarActionStyle,
-      this.appbarBackgroundColor,
-      this.appbarBrightness,
-      this.tabBarUnSelectedLabelStyle,
-      this.tabBarLabelStyle,
-      this.tabBarBackgroundColor,
-      this.pageBackgroundColor,
-      this.bottomBackgroundColor,
-      this.titleStyle,
-      this.contentStyle,
-      this.actionStyle,
-      this.iconColor,
+      {BrnTextStyle? appbarTitleStyle,
+      BrnTextStyle? appbarActionStyle,
+      Color? appbarBackgroundColor,
+      Brightness? appbarBrightness,
+      BrnTextStyle? tabBarUnSelectedLabelStyle,
+      BrnTextStyle? tabBarLabelStyle,
+      Color? tabBarBackgroundColor,
+      Color? pageBackgroundColor,
+      Color? bottomBackgroundColor,
+      BrnTextStyle? titleStyle,
+      BrnTextStyle? contentStyle,
+      BrnTextStyle? actionStyle,
+      Color? iconColor,
       String configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID})
       : super(configId: configId) {
     this.appbarTitleStyle = BrnTextStyle(color: commonConfig.colorTextBaseInverse);
@@ -114,19 +153,19 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
 
   /// 白色主题
   BrnGalleryDetailConfig.light(
-      {this.appbarTitleStyle,
-      this.appbarActionStyle,
-      this.appbarBackgroundColor,
-      this.appbarBrightness,
-      this.tabBarUnSelectedLabelStyle,
-      this.tabBarLabelStyle,
-      this.tabBarBackgroundColor,
-      this.pageBackgroundColor,
-      this.bottomBackgroundColor,
-      this.titleStyle,
-      this.contentStyle,
-      this.actionStyle,
-      this.iconColor,
+      {BrnTextStyle? appbarTitleStyle,
+      BrnTextStyle? appbarActionStyle,
+      Color? appbarBackgroundColor,
+      Brightness? appbarBrightness,
+      BrnTextStyle? tabBarUnSelectedLabelStyle,
+      BrnTextStyle? tabBarLabelStyle,
+      Color? tabBarBackgroundColor,
+      Color? pageBackgroundColor,
+      Color? bottomBackgroundColor,
+      BrnTextStyle? titleStyle,
+      BrnTextStyle? contentStyle,
+      BrnTextStyle? actionStyle,
+      Color? iconColor,
       String configId = BrnThemeConfigurator.GLOBAL_CONFIG_ID})
       : super(configId: configId) {
     this.appbarTitleStyle = BrnTextStyle(color: commonConfig.colorTextBase);
@@ -145,7 +184,7 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
   }
 
   @override
-  void initThemeConfig(String configId, {BrnCommonConfig currentLevelCommonConfig}) {
+  void initThemeConfig(String configId, {BrnCommonConfig? currentLevelCommonConfig}) {
     super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
 
     /// 用户全局组件配置
@@ -158,9 +197,9 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
 
     this.appbarActionStyle = galleryDetailConfig.appbarActionStyle.merge(this.appbarActionStyle);
 
-    this.appbarBrightness ??= galleryDetailConfig.appbarBrightness;
+    this.appbarBrightness = galleryDetailConfig.appbarBrightness;
 
-    this.appbarBackgroundColor ??= galleryDetailConfig.appbarBackgroundColor;
+    this.appbarBackgroundColor = galleryDetailConfig.appbarBackgroundColor;
 
     this.tabBarUnSelectedLabelStyle = galleryDetailConfig.tabBarUnSelectedLabelStyle
         .merge(BrnTextStyle(fontSize: commonConfig.fontSizeSubHead))
@@ -171,11 +210,11 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
             color: commonConfig.colorTextBaseInverse, fontSize: commonConfig.fontSizeSubHead))
         .merge(this.tabBarLabelStyle);
 
-    this.tabBarBackgroundColor ??= galleryDetailConfig.tabBarBackgroundColor;
+    this.tabBarBackgroundColor = galleryDetailConfig.tabBarBackgroundColor;
 
-    this.pageBackgroundColor ??= galleryDetailConfig.pageBackgroundColor;
+    this.pageBackgroundColor = galleryDetailConfig.pageBackgroundColor;
 
-    this.bottomBackgroundColor ??= galleryDetailConfig.bottomBackgroundColor;
+    this.bottomBackgroundColor = galleryDetailConfig.bottomBackgroundColor;
 
     this.titleStyle = galleryDetailConfig.titleStyle
         .merge(BrnTextStyle(
@@ -191,26 +230,26 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
             color: commonConfig.colorTextBaseInverse, fontSize: commonConfig.fontSizeBase))
         .merge(this.actionStyle);
 
-    this.iconColor ??= galleryDetailConfig.iconColor;
+    this.iconColor = galleryDetailConfig.iconColor;
   }
 
   BrnGalleryDetailConfig copyWith({
-    BrnTextStyle appbarTitleStyle,
-    BrnTextStyle appbarActionStyle,
-    Color appbarBackgroundColor,
-    Brightness appbarBrightness,
-    BrnTextStyle tabBarUnSelectedLabelStyle,
-    Color tabBarUnselectedLabelColor,
-    BrnTextStyle tabBarLabelStyle,
-    Color tabBarLabelColor,
-    Color tabBarBackgroundColor,
-    Color indicatorColor,
-    Color pageBackgroundColor,
-    Color bottomBackgroundColor,
-    BrnTextStyle titleStyle,
-    BrnTextStyle contentStyle,
-    BrnTextStyle actionStyle,
-    Color iconColor,
+    BrnTextStyle? appbarTitleStyle,
+    BrnTextStyle? appbarActionStyle,
+    Color? appbarBackgroundColor,
+    Brightness? appbarBrightness,
+    BrnTextStyle? tabBarUnSelectedLabelStyle,
+    Color? tabBarUnselectedLabelColor,
+    BrnTextStyle? tabBarLabelStyle,
+    Color? tabBarLabelColor,
+    Color? tabBarBackgroundColor,
+    Color? indicatorColor,
+    Color? pageBackgroundColor,
+    Color? bottomBackgroundColor,
+    BrnTextStyle? titleStyle,
+    BrnTextStyle? contentStyle,
+    BrnTextStyle? actionStyle,
+    Color? iconColor,
   }) {
     return BrnGalleryDetailConfig(
       appbarTitleStyle: appbarTitleStyle ?? this.appbarTitleStyle,
@@ -229,24 +268,24 @@ class BrnGalleryDetailConfig extends BrnBaseConfig {
     );
   }
 
-  BrnGalleryDetailConfig merge(BrnGalleryDetailConfig other) {
+  BrnGalleryDetailConfig merge(BrnGalleryDetailConfig? other) {
     if (other == null) return this;
     return copyWith(
-      appbarTitleStyle: appbarTitleStyle?.merge(other.appbarTitleStyle) ?? other.appbarTitleStyle,
+      appbarTitleStyle: appbarTitleStyle.merge(other.appbarTitleStyle) ?? other.appbarTitleStyle,
       appbarActionStyle:
-          appbarActionStyle?.merge(other.appbarActionStyle) ?? other.appbarActionStyle,
+          appbarActionStyle.merge(other.appbarActionStyle) ?? other.appbarActionStyle,
       appbarBackgroundColor: other.appbarBackgroundColor,
       appbarBrightness: other.appbarBrightness,
       tabBarUnSelectedLabelStyle:
-          tabBarUnSelectedLabelStyle?.merge(other.tabBarUnSelectedLabelStyle) ??
+          tabBarUnSelectedLabelStyle.merge(other.tabBarUnSelectedLabelStyle) ??
               other.tabBarUnSelectedLabelStyle,
-      tabBarLabelStyle: tabBarLabelStyle?.merge(other.tabBarLabelStyle) ?? other.tabBarLabelStyle,
+      tabBarLabelStyle: tabBarLabelStyle.merge(other.tabBarLabelStyle) ?? other.tabBarLabelStyle,
       tabBarBackgroundColor: other.tabBarBackgroundColor,
       pageBackgroundColor: other.pageBackgroundColor,
       bottomBackgroundColor: other.bottomBackgroundColor,
-      titleStyle: titleStyle?.merge(other.titleStyle) ?? other.titleStyle,
-      contentStyle: contentStyle?.merge(other.contentStyle) ?? other.contentStyle,
-      actionStyle: actionStyle?.merge(other.actionStyle) ?? other.actionStyle,
+      titleStyle: titleStyle.merge(other.titleStyle) ?? other.titleStyle,
+      contentStyle: contentStyle.merge(other.contentStyle) ?? other.contentStyle,
+      actionStyle: actionStyle.merge(other.actionStyle) ?? other.actionStyle,
       iconColor: other.iconColor,
     );
   }
